@@ -8,6 +8,7 @@ class EventControl {
   async start() {
     OutputView.printIntroduce();
     const day = await this.getValidateDay();
+    const menu = await this.getValidateOrder();
   }
 
   async getValidateDay() {
