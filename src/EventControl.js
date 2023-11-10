@@ -3,12 +3,16 @@ import InputView from './InputView';
 import OutputView from './OutputView';
 import { MESSAGE } from './message';
 import { MENU, ONLYDRINK } from './Menu';
+import Event from './Event';
 
 class EventControl {
   async start() {
     OutputView.printIntroduce();
     const day = await this.getValidateDay();
     const menu = await this.getValidateOrder();
+    const event = new Event(day, menu);
+    OutputView.printPreview();
+    OutputView.printMenu(event.getOrder());
   }
 
   async getValidateDay() {
@@ -33,6 +37,9 @@ class EventControl {
     while (true) {
       try {
         const order = await InputView.readOrder();
+        const orderArray = EventControl.orderToArray(order);
+        EventControl.isValidateOrder(orderArray);
+        return orderArray;
       } catch (error) {
         Console.print(error.message);
       }

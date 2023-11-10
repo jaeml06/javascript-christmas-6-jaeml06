@@ -16,4 +16,8 @@ export default class Event {
     });
     return total;
   }
+
+  getOrder(){
+    return JSON.parse(JSON.stringify(this.#order));
+  }
 }
