@@ -27,4 +27,11 @@ export default class Event {
     }
     return false;
   }
+
+  calculateDiscountForDay() {
+    if (this.#day >= 1 && this.#day <= 25) {
+      return 1000 + (this.#day - 1) * 100;
+    }
+    return 0;
+  }
 }
