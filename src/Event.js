@@ -54,4 +54,11 @@ export default class Event {
     }
     return 0;
   }
+
+  calculateSpecialDiscount() {
+    if (this.#weekday === 0 || this.#day === 25) {
+      return 1000;
+    }
+    return 0;
+  }
 }
