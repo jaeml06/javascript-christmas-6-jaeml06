@@ -10,4 +10,10 @@ describe('Event class 검사', () => {
     const temp = new Event(3, [['바비큐립', 3], ['초코케이크', 2]]);
     expect(temp.isCheckGiveawayEvent()).toEqual(true);
   });
+
+  test('day가 3일 경우', () => {
+    const temp = new Event(3, [['바비큐립', 3], ['초코케이크', 2]]);
+    expect(temp.calculateDiscountForDay()).toEqual(1200);
+  });
+  
 });
