@@ -20,4 +20,11 @@ export default class Event {
   getOrder(){
     return JSON.parse(JSON.stringify(this.#order));
   }
+
+  isCheckGiveawayEvent(){
+    if(this.calculateTotalPrice() >= 12000){
+      return true; 
+    }
+    return false;
+  }
 }
