@@ -21,4 +21,8 @@ describe('Event class 검사', () => {
     expect(temp.calculateWeekdayDiscount()).toEqual(4046);
   });
 
+  test('day가 2, 메인메뉴가 3개인 경우 경우 평일 할인 금액 계산', () => {
+    const temp = new Event(2, [['바비큐립', 3], ['초코케이크', 2]]);
+    expect(temp.calculateWeekendDiscount()).toEqual(6069);
+  });
 });
