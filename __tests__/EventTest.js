@@ -11,9 +11,14 @@ describe('Event class 검사', () => {
     expect(temp.isCheckGiveawayEvent()).toEqual(true);
   });
 
-  test('day가 3일 경우', () => {
+  test('day가 3일 경우 크리스마스 디데이 할인 금액 계산', () => {
     const temp = new Event(3, [['바비큐립', 3], ['초코케이크', 2]]);
     expect(temp.calculateDiscountForDay()).toEqual(1200);
   });
-  
+
+  test('day가 4, 디저트 메뉴가 2개인 경우 경우 평일 할인 금액 계산', () => {
+    const temp = new Event(4, [['바비큐립', 3], ['초코케이크', 2]]);
+    expect(temp.calculateWeekdayDiscount()).toEqual(4046);
+  });
+
 });
