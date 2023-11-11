@@ -3,10 +3,12 @@ import { MENU, ONLYDESSERT, ONLYMAIN } from "./Menu";
 export default class Event {
   #day;
   #order;
+  #weekday;
 
   constructor(day = 0, order = []) {
     this.#day = day;
     this.#order = order;
+    this.#weekday = new Date(2023, 11, this.#day).getDay();
   }
 
   calculateTotalPrice(){
@@ -36,8 +38,7 @@ export default class Event {
   }
 
   calculateWeekdayDiscount() {
-    const weekday = new Date(2023, 11, this.#day).getDay();
-    if (weekday >= 0 && weekday <= 3) {
+    if (this.#weekday >= 0 && this.#weekday <= 4) {
       return this.#order.reduce((acc, [name, count]) => {
         return acc + (ONLYDESSERT.includes(name) ? 2023 * count : 0);
       }, 0);
@@ -46,8 +47,7 @@ export default class Event {
   }
 
   calculateWeekendDiscount() {
-    const weekday = new Date(2023, 11, this.#day).getDay();
-    if (weekday === 5 || weekday === 6) { // 금요일과 토요일
+    if (this.#weekday === 5 || this.#weekday === 6) {
       return this.#order.reduce((acc, [name, count]) => {
         return acc + (ONLYMAIN.includes(name) ? 2023 * count : 0);
       }, 0);
