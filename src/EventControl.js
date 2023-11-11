@@ -1,7 +1,7 @@
 import { Console } from '@woowacourse/mission-utils';
 import InputView from './InputView';
 import OutputView from './OutputView';
-import { MESSAGE } from './message';
+import { MESSAGE } from './Message';
 import { MENU, ONLYDRINK } from './Menu';
 import Event from './Event';
 
@@ -11,9 +11,7 @@ class EventControl {
     const day = await this.getValidateDay();
     const menu = await this.getValidateOrder();
     const event = new Event(day, menu);
-    OutputView.printPreview();
-    OutputView.printMenu(event.getOrder());
-    OutputView.printTotalPrice(event.calculateTotalPrice);
+    EventControl.printResult(event)
   }
 
   async getValidateDay() {
@@ -76,6 +74,13 @@ class EventControl {
     if (drinkOnly) {
       throw new Error(MESSAGE.orderError);
     }
+  }
+
+  static printResult(event = {}){
+    OutputView.printPreview();
+    OutputView.printMenu(event.getOrder());
+    OutputView.printTotalPrice(event.calculateTotalPrice());
+    
   }
 }
 
