@@ -16,3 +16,5 @@ export const MENU = Object.freeze({
 export const ONLYDRINK = Object.freeze(['제로콜라', '레드와인', '샴페인']);
 
 export const ONLYDESSERT = Object.freeze(['초코케이크', '아이스크림']);
+
+export const ONLYMAIN = Object.freeze(['티본스테이크', '바비큐립']);
