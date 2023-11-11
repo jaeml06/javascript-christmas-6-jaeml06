@@ -8,6 +8,8 @@ export const MESSAGE = Object.freeze({
     dayError: '[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.',
     orderError: '[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.', 
 
+    numberUnit: '개',
+    won: '원',
 
     maxOrderCount: 20,
 })

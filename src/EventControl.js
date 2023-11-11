@@ -13,6 +13,7 @@ class EventControl {
     const event = new Event(day, menu);
     OutputView.printPreview();
     OutputView.printMenu(event.getOrder());
+    OutputView.printTotalPrice(event.calculateTotalPrice);
   }
 
   async getValidateDay() {
