@@ -25,4 +25,9 @@ describe('Event class 검사', () => {
     const temp = new Event(2, [['바비큐립', 3], ['초코케이크', 2]]);
     expect(temp.calculateWeekendDiscount()).toEqual(6069);
   });
+
+  test.each([10, 25])('day가 별표가 있는 날일 때 ', (input) => {
+    const temp = new Event(input, [['바비큐립', 3], ['초코케이크', 2]]);
+    expect(temp.calculateSpecialDiscount()).toEqual(1000);
+  });
 });
