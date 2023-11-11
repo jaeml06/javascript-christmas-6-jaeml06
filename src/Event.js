@@ -1,4 +1,4 @@
-import { MENU } from "./Menu";
+import { MENU, ONLYDESSERT } from "./Menu";
 
 export default class Event {
   #day;
@@ -31,6 +31,16 @@ export default class Event {
   calculateDiscountForDay() {
     if (this.#day >= 1 && this.#day <= 25) {
       return 1000 + (this.#day - 1) * 100;
+    }
+    return 0;
+  }
+
+  calculateWeekdayDiscount() {
+    const weekday = new Date(2023, 11, this.#day).getDay();
+    if (weekday >= 0 && weekday <= 3) {
+      return this.#order.reduce((acc, [name, count]) => {
+        return acc + (ONLYDESSERT.includes(name) ? 2023 * count : 0);
+      }, 0);
     }
     return 0;
   }
