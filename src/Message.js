@@ -17,8 +17,8 @@ export const MESSAGE = Object.freeze({
   totalPriceTitle: '\n<할인 전 총주문 금액>',
   giveawayEventTitle: '\n<증정 메뉴>',
   eventListTitle: '\n<혜택 내역>',
-  totalDiscountTilte: '\n<총혜택 금액>',
-  totalDiscountPriceTilte: '\n<할인 후 예상 결제 금액>',
+  totalDiscountTitle: '\n<총혜택 금액>',
+  totalDiscountPriceTitle: '\n<할인 후 예상 결제 금액>',
   eventBadgeTitle: '\n<12월 이벤트 배지>',
 
   ChristmasDdayDisCount: '크리스마스 디데이 할인: -',
@@ -29,6 +29,11 @@ export const MESSAGE = Object.freeze({
 
   noneEvent: '없음',
   giveawayEvent: '샴페인 1개',
+  minus: '-',
+
+  santaBadge: '산타',
+  treeBadge: '트리',
+  starBadge: '별',
 
   maxOrderCount: 20,
 });

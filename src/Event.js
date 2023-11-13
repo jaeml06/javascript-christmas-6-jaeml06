@@ -1,4 +1,5 @@
 import { MENU, ONLYDESSERT, ONLYMAIN } from "./Menu";
+import { MESSAGE } from "./Message";
 
 export default class Event {
   #day;
@@ -88,5 +89,19 @@ export default class Event {
       totalDiscountPrice += 25000;
     }
     return totalDiscountPrice;
+  }
+
+  selectBadge(){
+    const discount = this.calculateTotalDiscount();
+    if(discount >= 20000){
+      return MESSAGE.santaBadge;
+    }
+    else if(discount >= 10000){
+      return MESSAGE.treeBadge;
+    }
+    else if(discount >= 5000){
+      return MESSAGE.starBadge;
+    }
+    return MESSAGE.noneEvent;
   }
 }

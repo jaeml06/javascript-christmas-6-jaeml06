@@ -80,9 +80,11 @@ class EventControl {
     OutputView.printPreview();
     OutputView.printMenu(event.getOrder());
     OutputView.printTotalPrice(event.calculateTotalPrice());
+    OutputView.printGiveawayEvent(event.isCheckGiveawayEvent());
     this.printEventList(event);
     OutputView.printTotalDisCount(event.calculateTotalDiscount());
     OutputView.printTotalDisCountPrice(event.calculateTotalDiscountPrice());
+    OutputView.printEventBadge(event.selectBadge());
   }
 
   static printEventList(event ={}){

@@ -1,5 +1,5 @@
 import { Console } from "@woowacourse/mission-utils";
-import { MESSAGE } from "./Message";
+import { MESSAGE } from "./Message.js";
 
 const OutputView = {
   printIntroduce() {
@@ -16,7 +16,7 @@ const OutputView = {
   },
   printTotalPrice(totalPrice = 0) {
     Console.print(MESSAGE.totalPriceTitle);
-    Console.print(`${totalPrice}${MESSAGE.won}`);
+    Console.print(`${totalPrice.toLocaleString()}${MESSAGE.won}`);
   },
   printGiveawayEvent(flag = false){
     Console.print(MESSAGE.giveawayEventTitle)
@@ -26,36 +26,37 @@ const OutputView = {
     }
     Console.print(MESSAGE.noneEvent);
   },
+  printDiscountListTitle(){
+    Console.print(MESSAGE.eventListTitle);
+  },
   printChristmasDdayDiscount(price = 0){
     if(price !== 0){
-      Console.print(`${MESSAGE.ChristmasDdayDisCount}${price}${MESSAGE.won}`)
+      Console.print(`${MESSAGE.ChristmasDdayDisCount}${price.toLocaleString()}${MESSAGE.won}`)
     }
   },
   printWeekdayDiscount(price = 0){
     if(price !== 0){
-      Console.print(`${MESSAGE.weekdayDiscount}${price}${MESSAGE.won}`)
+      Console.print(`${MESSAGE.weekdayDiscount}${price.toLocaleString()}${MESSAGE.won}`)
     }
   },
   printWeekendDiscount(price = 0){
     if(price !== 0){
-      Console.print(`${MESSAGE.weekendDiscount}${price}${MESSAGE.won}`)
+      Console.print(`${MESSAGE.weekendDiscount}${price.toLocaleString()}${MESSAGE.won}`)
     }
   },
   printSpecialDiscount(price = 0){
     if(price !== 0){
-      Console.print(`${MESSAGE.specialDiscount}${price}${MESSAGE.won}`)
+      Console.print(`${MESSAGE.specialDiscount}${price.toLocaleString()}${MESSAGE.won}`)
     }
   },
-  printGivewayDiscount(price = 0){
-    if(price !== 0){
-      Console.print(MESSAGE.givewayDiscount);
-    }
+  printGivewayDiscount(){
+    Console.print(MESSAGE.givewayDiscount);
   },
   printNonEvent(){
     Console.print(MESSAGE.noneEvent);
   },
   printTotalDisCount(price = 0){
-    Console.print(MESSAGE.totalDiscountTilte);
+    Console.print(MESSAGE.totalDiscountTitle);
     if(price !== 0){
       Console.print(`${MESSAGE.minus}${price.toLocaleString()}${MESSAGE.won}`);
       return;
@@ -66,6 +67,10 @@ const OutputView = {
     Console.print(MESSAGE.totalDiscountPriceTitle)
     Console.print(`${price.toLocaleString()}${MESSAGE.won}`);
   },
+  printEventBadge(badge = ''){
+    Console.print(MESSAGE.eventBadgeTitle);
+    Console.print(badge);
+  }
 };
 
 export default OutputView;
