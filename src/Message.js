@@ -35,5 +35,26 @@ export const MESSAGE = Object.freeze({
   treeBadge: '트리',
   starBadge: '별',
 
+  year: 2023,
+  month: 11,
   maxOrderCount: 20,
+  givewayBoundary: 12000,
+  discountBoundary: 10000,
+  santaBadgeBoundary: 20000,
+  treeBadgeBoundary: 10000,
+  starBadgeBoundary: 5000,
+
+  startDday: 1,
+  endDday: 25,
+  sundays: 0,
+  thursdays: 4,
+  fridays: 5,
+  saturdays: 6,
+
+  christmasDay: 25,
+
+  givewayPrice: 25000,
+  specialDiscountPrice: 1000,
+  DdayBasePrice: 1000,
+  DdayIncreasePrice: 100,
 });

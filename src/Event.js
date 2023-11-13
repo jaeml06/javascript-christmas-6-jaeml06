@@ -9,7 +9,7 @@ export default class Event {
   constructor(day = 0, order = []) {
     this.#day = day;
     this.#order = order;
-    this.#weekday = new Date(2023, 11, this.#day).getDay();
+    this.#weekday = new Date(MESSAGE.year, MESSAGE.month, this.#day).getDay();
   }
 
   calculateTotalPrice() {
@@ -25,53 +25,53 @@ export default class Event {
   }
 
   isCheckGiveawayEvent() {
-    if (this.calculateTotalPrice() >= 12000) {
+    if (this.calculateTotalPrice() >= MESSAGE.givewayBoundary) {
       return true;
     }
     return false;
   }
 
   calculateDiscountForDay() {
-    if (this.#day >= 1 && this.#day <= 25) {
-      return 1000 + (this.#day - 1) * 100;
+    if (this.#day >= MESSAGE.startDday && this.#day <= MESSAGE.endDday) {
+      return MESSAGE.DdayBasePrice + (this.#day - 1) * MESSAGE.DdayIncreasePrice;
     }
     return 0;
   }
 
   calculateWeekdayDiscount() {
-    if (this.#weekday >= 0 && this.#weekday <= 4) {
+    if (this.#weekday >= MESSAGE.sundays && this.#weekday <= MESSAGE.thursdays) {
       return this.#order.reduce((acc, [name, count]) => {
-        return acc + (ONLYDESSERT.includes(name) ? 2023 * count : 0);
+        return acc + (ONLYDESSERT.includes(name) ? MESSAGE.year * count : 0);
       }, 0);
     }
     return 0;
   }
 
   calculateWeekendDiscount() {
-    if (this.#weekday === 5 || this.#weekday === 6) {
+    if (this.#weekday === MESSAGE.fridays || this.#weekday === MESSAGE.saturdays) {
       return this.#order.reduce((acc, [name, count]) => {
-        return acc + (ONLYMAIN.includes(name) ? 2023 * count : 0);
+        return acc + (ONLYMAIN.includes(name) ? MESSAGE.year * count : 0);
       }, 0);
     }
     return 0;
   }
 
   calculateSpecialDiscount() {
-    if (this.#weekday === 0 || this.#day === 25) {
-      return 1000;
+    if (this.#weekday === MESSAGE.sundays || this.#day === MESSAGE.christmasDay) {
+      return MESSAGE.specialDiscountPrice;
     }
     return 0;
   }
 
   calculateGivewayDiscount() {
     if (this.isCheckGiveawayEvent()) {
-      return 25000;
+      return MESSAGE.givewayPrice;
     }
     return 0;
   }
 
   calculateTotalDiscount() {
-    if (this.calculateTotalPrice() < 10000) {
+    if (this.calculateTotalPrice() < MESSAGE.discountBoundary) {
       return 0;
     }
     return (
@@ -86,20 +86,20 @@ export default class Event {
   calculateTotalDiscountPrice(){
     let totalDiscountPrice = this.calculateTotalPrice() - this.calculateTotalDiscount();
     if(this.isCheckGiveawayEvent()){
-      totalDiscountPrice += 25000;
+      totalDiscountPrice += MESSAGE.givewayPrice;
     }
     return totalDiscountPrice;
   }
 
   selectBadge(){
     const discount = this.calculateTotalDiscount();
-    if(discount >= 20000){
+    if(discount >= MESSAGE.santaBadgeBoundary){
       return MESSAGE.santaBadge;
     }
-    else if(discount >= 10000){
+    else if(discount >= MESSAGE.treeBadgeBoundary){
       return MESSAGE.treeBadge;
     }
-    else if(discount >= 5000){
+    else if(discount >= MESSAGE.starBadgeBoundary){
       return MESSAGE.starBadge;
     }
     return MESSAGE.noneEvent;
