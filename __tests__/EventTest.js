@@ -30,4 +30,14 @@ describe('Event class 검사', () => {
     const temp = new Event(input, [['바비큐립', 3], ['초코케이크', 2]]);
     expect(temp.calculateSpecialDiscount()).toEqual(1000);
   });
+
+  test('총 주문 금액이 10000원 이하인 경우의 총 혜택 금액', () => {
+    const temp = new Event(6, [['타파스', 1], ['제로콜라', 1]]);
+    expect(temp.calculateTotalDiscount()).toEqual(0);
+  });
+
+  test('총 주문 금액이 10000원 이하인 경우의 총 혜택 금액', () => {
+    const temp = new Event(3, [['티본스테이크', 1], ['바비큐립', 1], ['초코케이크', 2],  ['제로콜라', 1]]);
+    expect(temp.calculateTotalDiscount()).toEqual(31246);
+  });
 });
