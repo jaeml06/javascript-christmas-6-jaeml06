@@ -16,6 +16,16 @@ export const MESSAGE = Object.freeze({
   menuTitle: '<주문 메뉴>',
   totalPriceTitle: '\n<할인 전 총주문 금액>',
   giveawayEventTitle: '\n<증정 메뉴>',
+  eventListTitle: '\n<혜택 내역>',
+  totalDiscountTilte: '\n<총혜택 금액>',
+  totalDiscountPriceTilte: '\n<할인 후 예상 결제 금액>',
+  eventBadgeTitle: '\n<12월 이벤트 배지>',
+
+  ChristmasDdayDisCount: '크리스마스 디데이 할인: -',
+  weekdayDiscount: '평일 할인 : -',
+  weekendDiscount: '주말 할인 : -',
+  specialDiscount: '특별 할인 : -',
+  givewayDiscount: '증정 이벤트: -25,000',
 
   noneEvent: '없음',
   giveawayEvent: '샴페인 1개',

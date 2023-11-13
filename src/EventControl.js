@@ -80,7 +80,21 @@ class EventControl {
     OutputView.printPreview();
     OutputView.printMenu(event.getOrder());
     OutputView.printTotalPrice(event.calculateTotalPrice());
-    
+    this.printEventList(event);
+  }
+
+  static printEventList(event ={}){
+    OutputView.printDiscountListTitle();
+    if(event.calculateTotalDiscount() === 0){
+      OutputView.printNonEvent();
+    }
+    OutputView.printChristmasDdayDiscount(event.calculateDiscountForDay());
+    OutputView.printWeekdayDiscount(event.calculateWeekdayDiscount());
+    OutputView.printWeekendDiscount(event.calculateWeekendDiscount());
+    OutputView.printSpecialDiscount(event.calculateSpecialDiscount());
+    if(event.isCheckGiveawayEvent()){
+      OutputView.printGivewayDiscount();
+    }
   }
 }
 
