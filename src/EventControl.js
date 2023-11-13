@@ -82,6 +82,7 @@ class EventControl {
     OutputView.printTotalPrice(event.calculateTotalPrice());
     this.printEventList(event);
     OutputView.printTotalDisCount(event.calculateTotalDiscount());
+    OutputView.printTotalDisCountPrice(event.calculateTotalDiscountPrice());
   }
 
   static printEventList(event ={}){

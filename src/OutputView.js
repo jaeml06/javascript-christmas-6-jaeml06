@@ -62,7 +62,10 @@ const OutputView = {
     }
     Console.print(`0${MESSAGE.won}`);
   },
-  // ...
+  printTotalDisCountPrice(price = 0){
+    Console.print(MESSAGE.totalDiscountPriceTitle)
+    Console.print(`${price.toLocaleString()}${MESSAGE.won}`);
+  },
 };
 
 export default OutputView;
