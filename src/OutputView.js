@@ -53,7 +53,15 @@ const OutputView = {
   },
   printNonEvent(){
     Console.print(MESSAGE.noneEvent);
-  }
+  },
+  printTotalDisCount(price = 0){
+    Console.print(MESSAGE.totalDiscountTilte);
+    if(price !== 0){
+      Console.print(`${MESSAGE.minus}${price.toLocaleString()}${MESSAGE.won}`);
+      return;
+    }
+    Console.print(`0${MESSAGE.won}`);
+  },
   // ...
 };
 

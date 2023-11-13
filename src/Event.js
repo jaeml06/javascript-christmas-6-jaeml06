@@ -81,4 +81,12 @@ export default class Event {
       this.calculateGivewayDiscount()
     );
   }
+
+  calculateTotalDiscountPrice(){
+    let totalDiscountPrice = this.calculateTotalPrice() - this.calculateTotalDiscount();
+    if(this.isCheckGiveawayEvent()){
+      totalDiscountPrice += 25000;
+    }
+    return totalDiscountPrice;
+  }
 }
