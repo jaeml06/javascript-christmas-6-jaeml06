@@ -11,21 +11,21 @@ export default class Event {
     this.#weekday = new Date(2023, 11, this.#day).getDay();
   }
 
-  calculateTotalPrice(){
+  calculateTotalPrice() {
     let total = 0;
-    this.#order.forEach(([name, count]) =>{
+    this.#order.forEach(([name, count]) => {
       total += MENU[name] * count;
     });
     return total;
   }
 
-  getOrder(){
+  getOrder() {
     return JSON.parse(JSON.stringify(this.#order));
   }
 
-  isCheckGiveawayEvent(){
-    if(this.calculateTotalPrice() >= 12000){
-      return true; 
+  isCheckGiveawayEvent() {
+    if (this.calculateTotalPrice() >= 12000) {
+      return true;
     }
     return false;
   }
@@ -60,5 +60,25 @@ export default class Event {
       return 1000;
     }
     return 0;
+  }
+
+  calculateGivewayDiscount() {
+    if (this.isCheckGiveawayEvent()) {
+      return 25000;
+    }
+    return 0;
+  }
+
+  calculateTotalDiscount() {
+    if (this.calculateTotalPrice() < 10000) {
+      return 0;
+    }
+    return (
+      this.calculateDiscountForDay() +
+      this.calculateWeekdayDiscount() +
+      this.calculateWeekendDiscount() +
+      this.calculateSpecialDiscount() +
+      this.calculateGivewayDiscount()
+    );
   }
 }
