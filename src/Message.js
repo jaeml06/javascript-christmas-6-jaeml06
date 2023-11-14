@@ -1,4 +1,4 @@
-export const MESSAGE = Object.freeze({
+const MESSAGE = Object.freeze({
   queryDay:
     '12월 중 식당 예상 방문 날짜는 언제인가요? (숫자만 입력해 주세요!)\n',
   queryOrder:
@@ -60,3 +60,4 @@ export const MESSAGE = Object.freeze({
   DdayBasePrice: 1000,
   DdayIncreasePrice: 100,
 });
+export default MESSAGE;

@@ -1,20 +1,20 @@
 import { Console } from '@woowacourse/mission-utils';
 import InputView from './InputView';
 import OutputView from './OutputView';
-import { MESSAGE } from './Message';
+import MESSAGE from './Message';
 import { MENU, ONLYDRINK } from './Menu';
 import Event from './Event';
 
 class EventControl {
   async start() {
     OutputView.printIntroduce();
-    const day = await this.getValidateDay();
-    const menu = await this.getValidateOrder();
+    const day = await EventControl.getValidateDay();
+    const menu = await EventControl.getValidateOrder();
     const event = new Event(day, menu);
-    EventControl.printResult(event)
+    EventControl.printResult(event);
   }
 
-  async getValidateDay() {
+  static async getValidateDay() {
     while (true) {
       try {
         const day = await InputView.readDay();
@@ -32,7 +32,7 @@ class EventControl {
     return Number(day);
   }
 
-  async getValidateOrder() {
+  static async getValidateOrder() {
     while (true) {
       try {
         const order = await InputView.readOrder();
@@ -54,7 +54,12 @@ class EventControl {
   }
 
   static checkMenuItem(item, count, menuCount) {
-    if (!Object.keys(MENU).includes(item) || !Number.isInteger(count) || count < 1 || menuCount.has(item)) {
+    if (
+      !Object.keys(MENU).includes(item) ||
+      !Number.isInteger(count) ||
+      count < 1 ||
+      menuCount.has(item)
+    ) {
       throw new Error(MESSAGE.orderError);
     }
     menuCount.add(item);
@@ -64,19 +69,17 @@ class EventControl {
     const menuCount = new Set();
     let totalItem = 0;
     let drinkOnly = true;
-    if(order.length === 0) throw new Error(MESSAGE.orderError);
+    if (order.length === 0) throw new Error(MESSAGE.orderError);
     order.forEach(([name, count]) => {
       EventControl.checkMenuItem(name, count, menuCount);
       if (!ONLYDRINK.includes(name)) drinkOnly = false;
       totalItem += count;
       if (totalItem > MESSAGE.maxOrderCount) throw new Error(MESSAGE.orderError);
     });
-    if (drinkOnly) {
-      throw new Error(MESSAGE.orderError);
-    }
+    if (drinkOnly) throw new Error(MESSAGE.orderError);
   }
 
-  static printResult(event = {}){
+  static printResult(event = {}) {
     OutputView.printPreview(event.getDay());
     OutputView.printMenu(event.getOrder());
     OutputView.printTotalPrice(event.calculateTotalPrice());
@@ -87,16 +90,16 @@ class EventControl {
     OutputView.printEventBadge(event.selectBadge());
   }
 
-  static printEventList(event ={}){
+  static printEventList(event = {}) {
     OutputView.printDiscountListTitle();
-    if(event.calculateTotalDiscount() === 0){
+    if (event.calculateTotalDiscount() === 0) {
       OutputView.printNonEvent();
     }
     OutputView.printChristmasDdayDiscount(event.calculateDiscountForDay());
     OutputView.printWeekdayDiscount(event.calculateWeekdayDiscount());
     OutputView.printWeekendDiscount(event.calculateWeekendDiscount());
     OutputView.printSpecialDiscount(event.calculateSpecialDiscount());
-    if(event.isCheckGiveawayEvent()){
+    if (event.isCheckGiveawayEvent()) {
       OutputView.printGivewayDiscount();
     }
   }

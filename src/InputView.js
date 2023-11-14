@@ -1,5 +1,5 @@
-import { MESSAGE } from "./Message";
-import { Console } from "@woowacourse/mission-utils";
+import MESSAGE from './Message';
+import { Console } from '@woowacourse/mission-utils';
 
 const InputView = {
   async readDay() {
@@ -11,6 +11,5 @@ const InputView = {
     const input = await Console.readLineAsync(MESSAGE.queryOrder);
     return input;
   },
-  // ...
 };
 export default InputView;
