@@ -9,7 +9,7 @@ export default class Event {
   constructor(day = 0, order = []) {
     this.#day = day;
     this.#order = order;
-    this.#weekday = new Date(MESSAGE.year, MESSAGE.month, this.#day).getDay();
+    this.#weekday = new Date(MESSAGE.eventYear, MESSAGE.eventMonth, this.#day).getDay();
   }
 
   calculateTotalPrice() {
@@ -18,6 +18,10 @@ export default class Event {
       total += MENU[name] * count;
     });
     return total;
+  }
+  
+  getDay(){
+    return `${this.#day}`;
   }
 
   getOrder() {
@@ -41,7 +45,7 @@ export default class Event {
   calculateWeekdayDiscount() {
     if (this.#weekday >= MESSAGE.sundays && this.#weekday <= MESSAGE.thursdays) {
       return this.#order.reduce((acc, [name, count]) => {
-        return acc + (ONLYDESSERT.includes(name) ? MESSAGE.year * count : 0);
+        return acc + (ONLYDESSERT.includes(name) ? MESSAGE.eventYear * count : 0);
       }, 0);
     }
     return 0;
@@ -50,7 +54,7 @@ export default class Event {
   calculateWeekendDiscount() {
     if (this.#weekday === MESSAGE.fridays || this.#weekday === MESSAGE.saturdays) {
       return this.#order.reduce((acc, [name, count]) => {
-        return acc + (ONLYMAIN.includes(name) ? MESSAGE.year * count : 0);
+        return acc + (ONLYMAIN.includes(name) ? MESSAGE.eventYear * count : 0);
       }, 0);
     }
     return 0;

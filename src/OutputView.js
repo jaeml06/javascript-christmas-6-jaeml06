@@ -5,8 +5,8 @@ const OutputView = {
   printIntroduce() {
     Console.print(MESSAGE.introduce);
   },
-  printPreview() {
-    Console.print(MESSAGE.preview);
+  printPreview(day = '') {
+    Console.print(`${MESSAGE.eventMonth}${MESSAGE.month} ${day}${MESSAGE.preview}`);
   },
   printMenu(order = []) {
     Console.print(MESSAGE.menuTitle);

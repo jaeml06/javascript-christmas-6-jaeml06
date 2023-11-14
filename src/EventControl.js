@@ -77,7 +77,7 @@ class EventControl {
   }
 
   static printResult(event = {}){
-    OutputView.printPreview();
+    OutputView.printPreview(event.getDay());
     OutputView.printMenu(event.getOrder());
     OutputView.printTotalPrice(event.calculateTotalPrice());
     OutputView.printGiveawayEvent(event.isCheckGiveawayEvent());
