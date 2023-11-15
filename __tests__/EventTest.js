@@ -36,8 +36,23 @@ describe('Event class 검사', () => {
     expect(temp.calculateTotalDiscount()).toEqual(0);
   });
 
+  test('총 주문 금액이 11500원 이하인 경우의 총 혜택 금액', () => {
+    const temp = new Event(25, [['타파스', 1], ['제로콜라', 2]]);
+    expect(temp.calculateTotalDiscount()).toEqual(4400);
+  });
+
   test('총 주문 금액이 10000원 이하인 경우의 총 혜택 금액', () => {
     const temp = new Event(3, [['티본스테이크', 1], ['바비큐립', 1], ['초코케이크', 2],  ['제로콜라', 1]]);
     expect(temp.calculateTotalDiscount()).toEqual(31246);
+  });
+
+  test('총 혜택 금액이 5000이상 10000이하인 경우 배지 종류', () => {
+    const temp = new Event(25, [['타파스', 1], ['초코케이크', 1]]);
+    expect(temp.selectBadge()).toEqual('별');
+  });
+
+  test('총 혜택 금액이 10000이상 20000이하인 경우 배지 종류', () => {
+    const temp = new Event(25, [['타파스', 1], ['초코케이크', 4]]);
+    expect(temp.selectBadge()).toEqual('트리');
   });
 });

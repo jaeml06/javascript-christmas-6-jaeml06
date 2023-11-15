@@ -40,7 +40,7 @@ const MESSAGE = Object.freeze({
   eventYear: 2023,
   eventMonth: 11,
   maxOrderCount: 20,
-  givewayBoundary: 12000,
+  givewayBoundary: 120000,
   discountBoundary: 10000,
   santaBadgeBoundary: 20000,
   treeBadgeBoundary: 10000,
